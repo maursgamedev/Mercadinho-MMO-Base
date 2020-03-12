@@ -1,0 +1,21 @@
+; For more information on the settings, please read the docs. ;
+; =========================================================== ;
+
+; Application settings
+[application]
+address = http://localhost:3030
+port = 3030
+secret = Please change me for a random string
+senderEmail = mercadinho@example.abc
+
+; Nodemailer Settings
+[nodemailer]
+host = smtp.mailtrap.io
+port = 2525
+auth.user = username
+auth.pass = password
+
+; Mongodb settings
+[mongodb]
+; This address is the complete address, with username and password
+address = mongodb://localhost:27017/mercadinho

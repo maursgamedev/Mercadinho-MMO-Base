@@ -1,0 +1,74 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "MessageSerializer",
+"language": "GDScript",
+"path": "res://shared/serialization/MessageSerializer.gd"
+}, {
+"base": "Node",
+"class": "SharedCommons",
+"language": "GDScript",
+"path": "res://shared/SharedCommons.gd"
+}, {
+"base": "Reference",
+"class": "TypeDefinitions",
+"language": "GDScript",
+"path": "res://shared/serialization/TypeDefinitions.gd"
+} ]
+_global_script_class_icons={
+"MessageSerializer": "",
+"SharedCommons": "",
+"TypeDefinitions": ""
+}
+
+[application]
+
+config/name="Client"
+run/main_scene="res://ClientMain.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+GameplaySignals="*res://Gameplay/GameplaySignals.gd"
+
+[input]
+
+player_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+player_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+player_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+player_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_physics/layer_1="actor"
+3d_physics/layer_2="walkable_terrain"
+3d_physics/layer_3="wall"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
