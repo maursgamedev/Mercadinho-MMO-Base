@@ -1,11 +1,12 @@
 const {User, UserValidator} = require('../models/user.js');
+const serviceAuthentication = require('./middlewares/serviceAuthentication.js');
 
 module.exports = (app) => { 
-    app.get('/users', (req, res) => {
+    app.get('/users', serviceAuthentication, (req, res) => {
         User.find({}).then((users) => res.json(users));
     })
 
-    app.post('/users', (req, res) => {
+    app.post('/users', serviceAuthentication, (req, res) => {
         const {username, email, password, password_confirmation} = req.body
         if (password != password_confirmation) {
             return res.status(400).sendJson({error: `Password and Password Confirmation doesn't match`})

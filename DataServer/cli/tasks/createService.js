@@ -12,6 +12,10 @@ inquirer.prompt([
         name: 'serviceName',
         message: 'Please name the new Service',
         when: (answers) => answers.confirm,
+        validate: (answers) => {
+            return answers.length > 3 ? 
+                true : 'The Service name must have more than 3 characters';
+        }
     }
 ]).then((answers) => {
     if (answers.serviceName) {
@@ -22,6 +26,7 @@ inquirer.prompt([
         console.log(`Data: `, data)
         return ServiceModel.create(service)
     }
+    return new Promise()
 }).then((data) => {
     console.log('SeviceModel has been created successfully, received data:', data)
     process.exit()

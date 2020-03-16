@@ -3,6 +3,10 @@ require('../database.js')();
 const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 const {hashPassword, generateSalt} = require('../helpers/hash.js')
+const jwt = require('jsonwebtoken');
+const settings = require('../../settings.js');
+const {secret} = settings.application
+
 
 const ServiceSchema = new Schema({
     name: String,
@@ -23,6 +27,12 @@ class ServiceClass {
     isPasswordValid(_password) {
         const testHash = hashPassword(_password, this.salt)
         return this.hash === testHash;
+    }
+
+    getToken() {
+        return jwt.sign({
+            id: this._id,
+        }, secret, {expiresIn: '1h'});
     }
 }
 
