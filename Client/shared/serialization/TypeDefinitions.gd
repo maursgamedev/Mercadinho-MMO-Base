@@ -1,5 +1,37 @@
 class_name TypeDefinitions
 
+extends Node
+
+var strTypeToGDType = {
+	'nil': TYPE_NIL,
+	'bool': TYPE_BOOL,
+	'int': TYPE_INT,
+	'real': TYPE_REAL,
+	'string': TYPE_STRING,
+	'vector2': TYPE_VECTOR2,
+	'rect2': TYPE_RECT2,
+	'vector3': TYPE_VECTOR3,
+	'transform2d': TYPE_TRANSFORM2D,
+	'plane': TYPE_PLANE,
+	'quat': TYPE_QUAT,
+	'aabb': TYPE_AABB,
+	'basis': TYPE_BASIS,
+	'terraform': TYPE_TRANSFORM,
+	'color': TYPE_COLOR,
+	'node_path': TYPE_NODE_PATH,
+	'rid': TYPE_RID,
+	'object': TYPE_OBJECT,
+	'dictionary': TYPE_DICTIONARY,
+	'array': TYPE_ARRAY,
+	'raw_array': TYPE_RAW_ARRAY,
+	'int_array': TYPE_INT_ARRAY,
+	'real_array': TYPE_REAL_ARRAY,
+	'string_array': TYPE_STRING_ARRAY,
+	'vector2_array': TYPE_VECTOR2_ARRAY,
+	'vector3_array': TYPE_VECTOR3_ARRAY,
+	'color_array': TYPE_COLOR_ARRAY
+}
+
 enum MessageNames {
 	NULL = -1,
 	# Server Messages

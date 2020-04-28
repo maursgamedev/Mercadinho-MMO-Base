@@ -3,7 +3,7 @@
 [ext_resource path="res://ClientMain.gd" type="Script" id=1]
 [ext_resource path="res://shared/maps/map0.tscn" type="PackedScene" id=2]
 [ext_resource path="res://shared/gameplay/WorldSimulation.gd" type="Script" id=4]
-[ext_resource path="res://Gameplay/LocalPlayerController.gd" type="Script" id=5]
+[ext_resource path="res://gameplay/LocalPlayerController.gd" type="Script" id=5]
 
 [node name="ClientMain" type="Node"]
 script = ExtResource( 1 )

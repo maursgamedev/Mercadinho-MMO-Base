@@ -15,17 +15,29 @@ _global_script_classes=[ {
 "path": "res://shared/serialization/MessageSerializer.gd"
 }, {
 "base": "Node",
+"class": "MessageType",
+"language": "GDScript",
+"path": "res://shared/serialization/MessageType.gd"
+}, {
+"base": "Node",
+"class": "SettingsLoader",
+"language": "GDScript",
+"path": "res://scripts/SettingsLoader.gd"
+}, {
+"base": "Node",
 "class": "SharedCommons",
 "language": "GDScript",
 "path": "res://shared/SharedCommons.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "TypeDefinitions",
 "language": "GDScript",
 "path": "res://shared/serialization/TypeDefinitions.gd"
 } ]
 _global_script_class_icons={
 "MessageSerializer": "",
+"MessageType": "",
+"SettingsLoader": "",
 "SharedCommons": "",
 "TypeDefinitions": ""
 }
@@ -38,7 +50,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameplaySignals="*res://Gameplay/GameplaySignals.gd"
+GameplaySignals="*res://singletons/GameplaySignals.gd"
 
 [input]
 
@@ -71,4 +83,5 @@ player_down={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.054902, 0.0666667, 0.0784314, 1 )
 environment/default_environment="res://default_env.tres"

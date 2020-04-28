@@ -5,7 +5,8 @@ var error_codes = TypeDefinitions.ErrorCodes
 var message_names = TypeDefinitions.MessageNames
 #
 
-var websocket_url = "ws://localhost:32784"
+var _websocket_url := ''
+var settings_loader = SettingsLoader.new()
 
 var is_connected = false
 var websocket = WebSocketClient.new()
@@ -19,8 +20,7 @@ func _ready():
 	errors.append(websocket.connect("data_received", self, "_on_data"))
 	errors.append(GameplaySignals.connect("broadcast_movement_vector", self, 'send_movement_data'))
 	errors.append(GameplaySignals.connect("broadcast_y_rotation", self, 'send_y_rotation'))
-
-	var err = websocket.connect_to_url(websocket_url)
+	var err = websocket.connect_to_url(websocket_url())
 	if err != OK:
 		print("Unable to connect")
 		set_process(false)
@@ -29,6 +29,8 @@ func _ready():
 	for error in errors:
 		if error != OK:
 			print('ClientMain _ready(): There was  error trying to connect to a signal, error code: ', error)
+
+
 
 func _closed(was_clean = false):
 	print("Closed, clean: ", was_clean)
