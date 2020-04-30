@@ -32,7 +32,7 @@ func get_data():
 	}
 	
 func show_error(error):
-	error_label.text = error
+	error_label.text = String(error)
 
 func submit():
 	emit_signal('submit', get_data())

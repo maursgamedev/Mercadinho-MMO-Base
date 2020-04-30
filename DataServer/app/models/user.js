@@ -8,7 +8,7 @@ const UserValidator = require('./validators/userValidator');
 const {hashPassword, generateSalt} = require('../helpers/hash.js');
 
 // Settings
-const {address, senderEmail} = require('../../settings.js').application;
+const {authAddress, senderEmail} = require('../../settings.js').application;
 
 //
 const UserSchema = new Schema({
@@ -49,8 +49,8 @@ class UserClass {
             from: senderEmail,
             to: this.email,
             subject: 'Please confirm your email',
-            html: loadTemplate('email/emailConfirmation.hbs')({
-                emailConfirmationLink: this.constructor.emailConfirmationLink(token),
+            html: loadTemplate('./views/email/emailConfirmation.hbs')({
+                emailConfirmationLink: this.constructor.emailConfirmationLink(this.email, token),
                 username: this.username
             })
         })
@@ -72,8 +72,14 @@ class UserClass {
         this.emailConfirmation.salt = null;
     }
 
-    static emailConfirmationLink(token) {
-        return `${address}/email_confirmation/${token}`
+    getToken() {
+        return jwt.sign({
+            id: this._id,
+        }, secret, {expiresIn: '1h'});
+    }
+
+    static emailConfirmationLink(email,token) {
+        return `${authAddress}/email_confirmation?email${email}&token=${token}`
     }
 }
 

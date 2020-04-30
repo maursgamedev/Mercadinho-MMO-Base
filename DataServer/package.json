@@ -4,8 +4,9 @@
   "description": "Data server for the game server",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run babel-node -- ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "services": "node ./index.js",
+    "players": "node ./index.js --players",
+    "all": "npm run services & npm run players"
   },
   "author": "",
   "license": "MIT",
@@ -17,6 +18,7 @@
     "inquirer": "^7.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.3",
+    "morgan": "^1.10.0",
     "node-fetch": "^2.6.0",
     "nodemailer": "^6.4.4"
   }

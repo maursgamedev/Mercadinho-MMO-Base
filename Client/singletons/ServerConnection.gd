@@ -4,8 +4,6 @@ var websocket = WebSocketClient.new()
 var settings_loader = SettingsLoader.new()
 
 
-
-
 func websocket_url():
 	if _websocket_url:
 		return _websocket_url

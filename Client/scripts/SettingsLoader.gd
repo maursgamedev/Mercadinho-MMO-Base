@@ -3,10 +3,10 @@ class_name SettingsLoader
 extends Node
 
 var settings
+var error
 const settings_file_path = "res://connection_settings.ini"
 
 func _init():
-	print('SettingsLoader initialize')
 	load_config()
 	
 func load_config():
@@ -14,7 +14,7 @@ func load_config():
 	var err = config_file.load(settings_file_path)
 	
 	if err != OK:
-		print(err)
-		return err
-	print(config_file)	
+		error = err
+		print('Settings Loader err => ', err)
+		return
 	settings = config_file

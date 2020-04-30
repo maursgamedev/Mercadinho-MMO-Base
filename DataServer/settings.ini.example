@@ -5,6 +5,8 @@
 [application]
 address = http://localhost:3030
 port = 3030
+authAddress = http://localhost:3031
+authPort = 3031
 secret = Please change me for a random string
 senderEmail = mercadinho@example.abc
 

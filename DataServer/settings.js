@@ -19,4 +19,5 @@ const settings = (() => {
         throw 'Error trying to read the settings.ini, cannot continue.'
     }
 })();
+
 module.exports = settings;

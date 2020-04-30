@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameplaySignals="*res://singletons/GameplaySignals.gd"
+Globals="*res://singletons/Globals.gd"
 
 [input]
 

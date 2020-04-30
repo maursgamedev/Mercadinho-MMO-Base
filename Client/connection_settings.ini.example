@@ -1,0 +1,7 @@
+; i expect this to work
+[server]
+address="localhost"
+port=32784
+
+[auth_server]
+address="http://localhost:3031"
