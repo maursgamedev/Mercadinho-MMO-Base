@@ -31,7 +31,12 @@ router.post('/auth', (req, res) => {
 
 router.get('/email_confirmation', (req, res) => {
     let {email, token} = req.query
-    UserModel.findOne({email}, (user) => {
+    UserModel.findOne({email}).exec((err, user) => {
+        if (err) {
+            res.statusCode = 500
+            res.json({error: `received the following error from the database: ${err}`})
+        }
+
         if (!user) {
             res.statusCode = 404
             res.json({error: `No user found with this email.`})
@@ -45,7 +50,7 @@ router.get('/email_confirmation', (req, res) => {
         }
 
         user.save().catch(internalError(res, 'An internal error ocurred trying to confirm your email'))
-    }).catch(internalError(res))
+    })
 })
 
 router.post('/', (req, res) => {

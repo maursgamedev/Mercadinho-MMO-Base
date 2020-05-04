@@ -6,6 +6,8 @@
   "scripts": {
     "services": "node ./index.js",
     "players": "node ./index.js --players",
+    "inspect_players": "node inspect ./index.js --players",
+    "inspect_only": "node inspect ./index --inspect-only",
     "all": "npm run services & npm run players"
   },
   "author": "",

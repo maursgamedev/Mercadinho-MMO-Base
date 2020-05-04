@@ -17,7 +17,7 @@ const UserSchema = new Schema({
     authorizations: [String],
     emailConfirmation: {
         salt: String,
-        token: String,
+        hash: String,
         confirmed: Boolean,
     },
     secret: {
@@ -44,12 +44,16 @@ class UserClass {
         let hash = hashPassword(token, salt);
         let confirmed = false;
         this.emailConfirmation = {salt, hash, confirmed};
+
+        console.log('############################')
+        console.log('User.sendEmailConfirmation()')
+        console.log('this.emailConfirmation ', this.emailConfirmation)
         
         mailer.sendMail({
             from: senderEmail,
             to: this.email,
             subject: 'Please confirm your email',
-            html: loadTemplate('./views/email/emailConfirmation.hbs')({
+            html: loadTemplate('email/emailConfirmation.hbs')({
                 emailConfirmationLink: this.constructor.emailConfirmationLink(this.email, token),
                 username: this.username
             })
@@ -79,7 +83,7 @@ class UserClass {
     }
 
     static emailConfirmationLink(email,token) {
-        return `${authAddress}/email_confirmation?email${email}&token=${token}`
+        return `${authAddress}/players/users/email_confirmation?email=${ encodeURIComponent(email) }&token=${ encodeURIComponent(token) }`
     }
 }
 

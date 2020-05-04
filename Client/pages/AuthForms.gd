@@ -57,7 +57,7 @@ func validate_registration_data(data):
 		errors.append('The password needs to be at least 6 characters long.')
 	if !data.tos_checked:
 		errors.append('Please make sure to read, and agree with the Terms of Service')
-	print('validate_registration_data errors', errors)
+	print('validate_registration_data errors ', errors)
 	return errors
 
 func submit_registration(data):
@@ -76,9 +76,18 @@ func submit_registration(data):
 		HTTPClient.METHOD_POST,
 		JSON.print(data)
 	)
+	if err != OK:
+		print('There was error trying to make a http request.')
+		print('Error code: ', err)
+		print('https://docs.godotengine.org/en/stable/classes/class_@globalscope.html#enum-globalscope-error')
 
 func request_finished(result, response_code, headers, body):
 	var response_data = null
+	if response_code == 0:
+		print('Got 0 as a response code, i dont know what this means, but it isnt working')
+		registration_form.show_error('Server could not be reached')
+		render_state(LoginPageStates.REGISTRATION_FORM)
+		
 	if response_code >= 200:
 		var parsed_json = JSON.parse(body.get_string_from_utf8())
 		if parsed_json.error != OK:

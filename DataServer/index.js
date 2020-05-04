@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const app = express();
 const {port, authPort} = settings.application;
 
-
 initDatabase().then(() => {
     app.use(express.json());
     app.use(bodyParser.json());
@@ -17,7 +16,12 @@ initDatabase().then(() => {
         next()
     })
 
-    if(argv.players) {
+    if (argv['inspect-only']) {
+        debugger;
+        return
+    }
+
+    if (argv.players) {
         app.use('/players', require('./app/playerAuthRoutes'))
     } else {
         app.use('/services', require('./app/routes'))

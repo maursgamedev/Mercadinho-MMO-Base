@@ -9,10 +9,17 @@ class UserValidator {
     isFieldUnique(fieldName) {
         let query = {}
         query[fieldName] = this.rawData[fieldName]
-        return this.UserModel.where(query).exec().then((user) => {
-            let isUnique = !user.length || !user;
-            console.log('isUniqueField fieldName ',fieldName, ' user => ', user, ' this.user => ', this.user)
-            new Promise((resolve, reject) => isUnique ? resolve() : reject(`${fieldName} isn't unique`));
+        return new Promise((resolve, reject) => {
+            this.UserModel.where(query).exec((err,users) => {
+                let isUnique = !users.length || !users;
+                if (err) {
+                    return reject(err)
+                }
+                if (isUnique) {
+                    return reject(`${fieldName} isn't unique`)
+                }
+                resolve()
+            });
         });
     }
 

@@ -14,8 +14,10 @@ senderEmail = mercadinho@example.abc
 [nodemailer]
 host = smtp.mailtrap.io
 port = 2525
-auth.user = username
-auth.pass = password
+
+[nodemailer.auth]
+user = username
+pass = password
 
 ; Mongodb settings
 [mongodb]
